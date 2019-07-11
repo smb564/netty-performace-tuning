@@ -73,8 +73,23 @@ with open(folder_name + case_name + "/test_notes.csv", "w") as f:
     # let's take the average for the measuring interval from the server
     # res = requests.get("http://192.168.32.2:8080/performance-mi").json()
     # writer.writerow(["average throughput (req/sec)", res[1] / mi])
-    writer.writerow(["average latency (ms)", res[2]])
-    writer.writerow(["99p latency (ms)", res[3]])
+    # writer.writerow(["average latency (ms)", res[2]])
+    # writer.writerow(["99p latency (ms)", res[3]])
+
+
+# update the server_summary.csv in the parent folder
+# check whether summary file exists
+if os.path.exists(folder_name + "server_summary.csv"):
+    # if the summary file does not exists, create file with the headers
+    with open(folder_name + "server_summary.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Case Name", "Average Threads", "Average Throughput (req/sec)", "Average Latency (ms)"])
+
+# update the server_summary.csv file
+with open(folder_name + "server_summary.csv", "a") as f:
+    writer = csv.writer(f)
+    writer.writerow([case_name, sum(threads) / len(threads), sum(throughput) / len(throughput),
+                     sum(mean_latency) / len(mean_latency)])
 
 
 # save the data
