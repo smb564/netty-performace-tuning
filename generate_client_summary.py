@@ -11,7 +11,7 @@ data = json.loads(sys.stdin.read())["HTTP Request"]
 
 # update the client_summary.csv in the parent folder
 # check whether summary file exists
-if os.path.exists(folder_name + "client_summary.csv"):
+if not os.path.exists(folder_name + "client_summary.csv"):
     # if the summary file does not exists, create file with the headers
     with open(folder_name + "client_summary.csv", "w") as f:
         writer = csv.writer(f)
