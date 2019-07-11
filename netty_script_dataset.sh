@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source venv/bin/activate
 
 jmeter_results_root_folder="/home/wso2/supun/netty-performance"
 parent_folder="netty/dataset/"
