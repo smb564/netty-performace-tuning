@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source venv/bin/activate
 
 parent_folder="netty/tuning/"
 
